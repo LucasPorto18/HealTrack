@@ -38,6 +38,7 @@ public class ConsultaController {
 
     @PostMapping("/finalizar")
     public String finalizarConsulta(@RequestParam Long pacienteId, @RequestParam List<String> setoresObrigatorios, RedirectAttributes redirectAttributes) {
+        if (setoresObrigatorios == null) setoresObrigatorios = List.of();
         consultaService.finalizarConsulta(pacienteId, setoresObrigatorios);
         redirectAttributes.addFlashAttribute("mensagem", "Consulta finalizada com sucesso.");
         return "redirect:/consulta";
