@@ -45,6 +45,10 @@ public class ConsultaController {
     }
 
 
-
+    @GetMapping("/finalizar")
+    public String finalizarGet() {
+        return "redirect:/consulta";
+    }
+    
    
 }
