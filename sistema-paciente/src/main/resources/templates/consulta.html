@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Gerenciar Consulta</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="/consulta.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="logo">
+                <i class="fas fa-hospital-alt"></i>
+                <h1>HealthTrack</h1>
+            </div>
+            <nav class="navbar">
+                <ul>
+                    <li><a th:href="@{/}" class="active"><i class="fas fa-home"></i> Início</a></li>
+                    <li><a th:href="@{/consulta}"><i class="fas fa-calendar-alt"></i> Consulta</a></li>
+                    <li><a th:href="@{/admin}"><i class="fas fa-cog"></i> Admin</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <main class="main-content">
+            <h2>Consultas Médicas</h2>
+
+            <div class="button-container">
+                <button class="btn btn-success" onclick="abrirModal('modalIniciar')">
+                    <i class="fas fa-play"></i> Iniciar Consulta
+                </button>
+                <button class="btn btn-danger" onclick="abrirModal('modalFinalizar')">
+                    <i class="fas fa-stop"></i> Finalizar Consulta
+                </button>
+            </div>
+
+            <!-- Modal Iniciar Consulta -->
+            <div id="modalIniciar" class="modal">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5><i class="fas fa-play-circle"></i> Iniciar Consulta</h5>
+                        <button type="button" class="close-btn" onclick="fecharModal('modalIniciar')">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="/consulta/iniciar" method="post">
+                            <p>Ao confirmar, a consulta será iniciada e o ID do paciente será gerado.</p>
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-success">
+                                    <i class="fas fa-check"></i> Confirmar Início
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal com ID do paciente -->
+            <div id="modalIdPaciente" class="modal" th:style="${mostrarModalId} ? 'display:flex;' : 'display:none;'">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5><i class="fas fa-check-circle"></i> Consulta Iniciada</h5>
+                        <button type="button" class="close-btn" onclick="fecharModal('modalIdPaciente')">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <p th:text="'Consulta iniciada com sucesso. ID do paciente: ' + ${pacienteId}"></p>
+                        <div class="modal-footer">
+                            <button onclick="fecharModal('modalIdPaciente')" class="btn btn-primary">
+                                <i class="fas fa-thumbs-up"></i> OK
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal Finalizar Consulta -->
+            <div id="modalFinalizar" class="modal">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5><i class="fas fa-stop-circle"></i> Finalizar Consulta</h5>
+                        <button type="button" class="close-btn" onclick="fecharModal('modalFinalizar')">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="/consulta/finalizar" method="post">
+                            <div class="form-group">
+                                <label for="pacienteId"><i class="fas fa-id-card"></i> ID do Paciente</label>
+                                <input type="number" class="form-control" name="pacienteId" id="pacienteId" required>
+                            </div>
+
+                            <p class="section-title"><i class="fas fa-list-check"></i> Setores obrigatórios:</p>
+                            <div class="checkbox-group">
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="setoresObrigatorios" value="ecg">
+                                    <i class="fas fa-x-ray"></i> ECG
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="setoresObrigatorios" value="posconsulta">
+                                    <i class="fas fa-bone"></i> Pós Consulta
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="setoresObrigatorios" value="assistenciasocial">
+                                    <i class="fas fa-tooth"></i> Assistência Social
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox" name="setoresObrigatorios" value="sala">
+                                    <i class="fas fa-tooth"></i> Sala de linhas de Cuidado
+                                </label>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-danger">
+                                    <i class="fas fa-stop"></i> Finalizar Consulta
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer class="footer">
+            <p>Sistema HealthTrack &copy; 2025 - Todos os direitos reservados</p>
+            <div class="social-icons">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+        </footer>
+    </div>
+  <script src="/consulta.js"></script>
+</body>
+</html>
