@@ -43,7 +43,7 @@
                         <button type="button" class="close-btn" onclick="fecharModal('modalIniciar')">&times;</button>
                     </div>
                     <div class="modal-body">
-                        <form action="/consulta/iniciar" method="post">
+                        <form th:action="@{/consulta/iniciar}" method="post">
                             <p>Ao confirmar, a consulta será iniciada e o ID do paciente será gerado.</p>
                             <div class="modal-footer">
                                 <button type="submit" class="btn btn-success">
@@ -81,10 +81,10 @@
                         <button type="button" class="close-btn" onclick="fecharModal('modalFinalizar')">&times;</button>
                     </div>
                     <div class="modal-body">
-                        <form action="/consulta/finalizar" method="post">
+                        <form action="@{/consulta/finalizar}" method="post">
                             <div class="form-group">
                                 <label for="pacienteId"><i class="fas fa-id-card"></i> ID do Paciente</label>
-                                <input type="number" class="form-control" name="pacienteId" id="pacienteId" required>
+                                <input type="number" class="form-control" name="pacienteId" id="pacienteId" th:value="${pacienteId}" required>
                             </div>
 
                             <p class="section-title"><i class="fas fa-list-check"></i> Setores obrigatórios:</p>
