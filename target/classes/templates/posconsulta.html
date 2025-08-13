@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Setor de Odontologia</title>
+    <link rel="stylesheet" href="/setores.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="logo">
+                <i class="fas fa-hospital-alt"></i>
+                <h1>HealthTrack</h1>
+            </div>
+            <nav class="navbar">
+                <ul>
+                    <li><a th:href="@{/}" class="active"><i class="fas fa-home"></i> Início</a></li>
+                    <li><a th:href="@{/consulta}"><i class="fas fa-calendar-alt"></i> Consulta</a></li>
+                    <li><a th:href="@{/admin}"><i class="fas fa-cog"></i> Admin</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <main class="consulta-container">
+            <h1>Pós Consulta</h1>
+            <div class="consulta-header">
+                <div th:if="${mensagemErro}" class="alert alert-danger" th:text="${mensagemErro}"></div>
+                <div id="saida">
+                    <h2>Registrar Saida</h2>
+                    <form th:action="@{'/setor/' + ${setor} + '/saida'}" method="post">
+                        <input type="number" name="pacienteId" th:value="${pacienteId}">
+                        <button type="submit">Registrar Saída</button>
+                    </form>
+                </div>
+                
+            </div>
+        </main>
+
+        <footer class="footer">
+            <p>Sistema MedFuture &copy; 2023 - Todos os direitos reservados</p>
+            <div class="social-icons">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Font Awesome (caso não esteja incluso em layout base) -->
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</body>
+</html>

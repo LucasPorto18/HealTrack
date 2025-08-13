@@ -1,0 +1,77 @@
+.setor-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 70vh;
+    padding: 40px 20px;
+    background-color: #f5f9fa;
+}
+
+.setor-form {
+    background-color: white;
+    padding: 30px 40px;
+    border-radius: 15px;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.15);
+    width: 100%;
+    max-width: 500px;
+    text-align: center;
+}
+
+.setor-form h2 {
+    font-size: 1.8rem;
+    color: #0a4d68;
+    margin-bottom: 25px;
+}
+
+.setor-form label {
+    display: block;
+    font-size: 1rem;
+    color: #333;
+    margin-bottom: 10px;
+    text-align: left;
+}
+
+.setor-form input[type="number"] {
+    width: 100%;
+    padding: 12px 15px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+    margin-bottom: 20px;
+    transition: border 0.3s;
+}
+
+.setor-form input[type="number"]:focus {
+    border-color: #05bfdb;
+    outline: none;
+}
+
+.setor-form button {
+    background: linear-gradient(135deg, #05bfdb, #088395);
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.setor-form button:hover {
+    background: linear-gradient(135deg, #088395, #0a4d68);
+    transform: translateY(-2px);
+}
+
+/* Mensagem de sucesso ou erro */
+.mensagem {
+    margin-top: 20px;
+    font-weight: 600;
+    font-size: 1rem;
+    color: green;
+}
+
+.mensagem.erro {
+    color: red;
+}
