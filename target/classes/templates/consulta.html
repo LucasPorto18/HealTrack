@@ -81,7 +81,7 @@
                         <button type="button" class="close-btn" onclick="fecharModal('modalFinalizar')">&times;</button>
                     </div>
                     <div class="modal-body">
-                        <form th:action="@{/consulta/finalizar}" method="post">
+                        <form action="/consulta/finalizar" method="post">
                             <div class="form-group">
                                 <label for="pacienteId"><i class="fas fa-id-card"></i> ID do Paciente</label>
                                 <input type="number" class="form-control" name="pacienteId" id="pacienteId" required>
