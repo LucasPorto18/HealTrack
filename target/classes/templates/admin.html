@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Admin - Relatórios</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/admin.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="logo">
+                <i class="fas fa-hospital-alt"></i>
+                <h1>HealthTrack</h1>
+            </div>
+            <nav class="navbar">
+                <ul>
+                    <li><a th:href="@{/}" class="active"><i class="fas fa-home"></i> Início</a></li>
+                    <li><a th:href="@{/consulta}"><i class="fas fa-calendar-alt"></i> Consulta</a></li>
+                    <li><a th:href="@{/admin}"><i class="fas fa-cog"></i> Admin</a></li>
+                   
+                </ul>
+            </nav>
+        </header>
+        <main class="main-content">
+            <div class="modal-overlay" id="modal">
+                <div class="modal">
+                  <h2>Digite a senha de acesso</h2>
+                  <div class="error" id="error">Senha incorreta</div>
+                  <input type="password" id="senha" placeholder="Senha...">
+                  <button onclick="verificarSenha()">Entrar</button>
+                </div>
+              </div>
+              
+            <div class="consulta-container" id="conteudo">
+                <h2>Relatórios Administrativos</h2>
+        
+                <form method="get" action="/admin/relatorio/pacientes">
+                    <button type="submit">📄 Baixar Relatório de Pacientes</button>
+                </form>
+        
+                <br>
+        
+                <form method="get" action="/admin/relatorio/setores">
+                    <button type="submit">📄 Baixar Relatório de Passagens</button>
+                </form>
+            </div>
+        
+        </main>
+        
+        
+    </div>
+    
+</body>
+<script src="/admin.js"></script>
+</html>
