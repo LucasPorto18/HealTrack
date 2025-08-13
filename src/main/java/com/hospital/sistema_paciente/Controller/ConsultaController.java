@@ -38,10 +38,23 @@ public class ConsultaController {
 
     @PostMapping("/finalizar")
     public String finalizarConsulta(@RequestParam Long pacienteId, @RequestParam List<String> setoresObrigatorios, RedirectAttributes redirectAttributes) {
-        if (setoresObrigatorios == null) setoresObrigatorios = List.of();
+        try{
+             if (setoresObrigatorios == null){
+                 setoresObrigatorios = List.of();}
+             
+       
         consultaService.finalizarConsulta(pacienteId, setoresObrigatorios);
         redirectAttributes.addFlashAttribute("mensagem", "Consulta finalizada com sucesso.");
         return "redirect:/consulta";
+    }catch (Exception e) {
+        // LOG útil em produção (deixe um logger ou System.err temporário)
+        // logger.error("Erro ao finalizar consulta. pacienteId={}, setores={}", pacienteId, setoresObrigatorios, e);
+        System.err.println("Erro ao finalizar consulta. pacienteId=" + pacienteId + " setores=" + setoresObrigatorios);
+        e.printStackTrace();
+
+        redirectAttributes.addFlashAttribute("erro", "Falha ao finalizar: " + e.getClass().getSimpleName());
+        return "redirect:/consulta";
+    }
     }
 
 
