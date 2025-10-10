@@ -9,6 +9,8 @@ import com.hospital.sistema_paciente.Repository.ConsultaSetorRepository;
 import com.hospital.sistema_paciente.Repository.PacienteRepository;
 import com.hospital.sistema_paciente.Repository.RegistroPassagemRepository;
 
+import jakarta.transaction.Transactional;
+
 @Service
 public class LimpezaDiariaService {
 
@@ -19,7 +21,8 @@ public class LimpezaDiariaService {
 
 
 
-    @Scheduled(cron = "0 59 23 * * *")
+    @Scheduled(cron = "0 5 0 * * *", zone = "America/Sao_Paulo")
+    @Transactional
     public void limparDadosDoBanco() {
         
 
